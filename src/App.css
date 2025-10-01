@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+*{
+  font-family: "Solway", serif;
+ 
+}
+button,Link{
+  cursor: pointer;
+font-weight: 600;
+}
+h1{
+  font-size: 32px;
+  font-weight: 400;
+  color:#4e093b ;
+  text-align: center;
+  padding-bottom: 40px;
+}
+h2{
+  font-weight: 600;
+  margin-bottom: 20px ;
+  color: white;
+}
+p{
+  text-align: justify;
+}
+.btn{
+  background-color: #4e093b;
+  color: white;
+}
+.btn:hover{
+  background-color: rgb(230, 221, 221);
+  color: #4e093b;
+  border:1px solid #4e093b;
+  scale: 106%;
+}
