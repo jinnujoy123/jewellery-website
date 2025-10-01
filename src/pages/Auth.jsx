@@ -25,7 +25,7 @@ function Auth({register}) {
    {!register ?
    
    <div className="w-full">
-     <Link className='text-white bg-blue-600 text-xl p-2 rounded my-5 inline-block w-full text-center'>Login</Link>
+     <Link to={''} className='text-white bg-blue-600 text-xl p-2 rounded my-5 inline-block w-full text-center'>Login</Link>
      <p className='text-sm text-blue-600  text-start w-full'>Are you A New User?<Link to={'/register'} className='underline'> Register</Link></p>
    </div>
    

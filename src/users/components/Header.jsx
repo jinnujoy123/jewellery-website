@@ -10,7 +10,7 @@ function Header() {
    const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <div className="fixed w-full">
+      <div className="fixed w-full z-10">
         <div className="flex justify-between items-center text-white px-5 " style={{backgroundColor:'#4e093b',height:'80px'}}>
             <h6 className='text-2xl md:text-3xl italic'>Kanika</h6>
             <div className="flex items-center justify-evenly w-50 text-lg md:text-xl">
@@ -20,7 +20,7 @@ function Header() {
              <Link to={'/cart'}>
                <FontAwesomeIcon icon={faCartShopping} />
              </Link>
-             <Link className='border border-white py-1 px-2 rounded-2xl hover:bg-white/50 hover:text-pink-900' to={'/login'}>
+             <Link className='border border-white py-1 px-2 rounded-2xl btn' to={'/login'}>
                <FontAwesomeIcon icon={faUser} />
                Login
              </Link>
@@ -39,7 +39,7 @@ function Header() {
             <Link to="/">HOME</Link>
             <Link to="/all-collections">COLLECTIONS</Link>
             <Link to="/careers">CAREERS</Link>
-            <Link to="/orders">ORDERS</Link>
+            <Link to="/profile">ACCOUNT</Link>
             <Link to="/contact">CONTACT</Link>
           </div>
               
