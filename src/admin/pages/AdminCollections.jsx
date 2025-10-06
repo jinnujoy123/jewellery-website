@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Footer from '../../components/Footer'
 import { Link } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 import AdminHeader from '../components/AdminHeader'
 
 function AdminCollections() {
+  const [products,setProducts]=useState(true)
+    const [users,setUsers]=useState(false)
   return (
     <div>
      <AdminHeader/>
@@ -15,7 +17,13 @@ function AdminCollections() {
           </div>
           <div className="col-span-4"style={{paddingTop:'100px'}} >
         <h1>Collections</h1>
-           <div className=" md:grid grid-cols-4 p-10 gap-x-4 gap-y-8">
+        <div className="flex justify-center ">
+              <button className= {products ? 'p-3 border-b border-pink-900 text-pink-900':'p-3 ' } onClick={()=>{setProducts(true);setUsers(false)}}>Products</button>
+              <button className= {users ? 'p-3 border-b border-pink-900 text-pink-900':'p-3' }  onClick={()=>{setProducts(false);setUsers(true)}}>Users</button>
+            </div>
+           {
+            products && 
+            <div className=" md:grid grid-cols-4 p-10 gap-x-4 gap-y-8">
         <div className=" shadow bg-gray-200 overflow-hidden" >
             <Link to={'/collection/:id/view'}> <img src="/public/IMG_4656.webp" alt="image" width={'100%'} height={'200px'} className=' object-cover  transition-transform duration-500 hover:scale-106'/></Link>
             <div className="p-3 text-center ">
@@ -75,7 +83,40 @@ function AdminCollections() {
               <p>Rs. 450</p>
             </div>
         </div>
-      </div>
+            </div>
+           }
+           {
+            users &&
+            <div className="md:grid grid-cols-3 py-5">
+              <div className="rounded shadow flex justify-center mx-2 items-center">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" alt="user" style={{width:'60px',height:'60px',borderRadius:'50%',objectFit:'cover',objectPosition:'top'}}/>
+                  <div className=" text-pink-900 p-5">
+                    <h3 className='text-2xl'>Maria Sam</h3>
+                    <h3>maria@gmail.com</h3>
+                    <Link className='btn  rounded shadow p-2 m-2 inline-block'>View</Link>
+
+                  </div>
+              </div>
+              <div className="rounded shadow flex justify-center mx-2 items-center">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" alt="user" style={{width:'60px',height:'60px',borderRadius:'50%',objectFit:'cover',objectPosition:'top'}}/>
+                  <div className=" text-pink-900 p-5">
+                    <h3 className='text-2xl'>Maria Sam</h3>
+                    <h3>maria@gmail.com</h3>
+                    <Link className='btn  rounded shadow p-2 m-2 inline-block'>View</Link>
+
+                  </div>
+              </div>
+              <div className="rounded shadow flex justify-center mx-2 items-center">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" alt="user" style={{width:'60px',height:'60px',borderRadius:'50%',objectFit:'cover',objectPosition:'top'}}/>
+                  <div className=" text-pink-900 p-5">
+                    <h3 className='text-2xl'>Maria Sam</h3>
+                    <h3>maria@gmail.com</h3>
+                    <Link className='btn  rounded shadow p-2 m-2 inline-block'>View</Link>
+
+                  </div>
+              </div>
+            </div>
+           }
                   </div>
           </div>
         </div>
