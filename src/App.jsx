@@ -14,10 +14,14 @@ import Wishlist from './users/pages/Wishlist'
 import Cart from './users/pages/Cart'
 
 import AdminDashboard from './admin/pages/AdminDashboard'
-import AdminCollections from './admin/pages/AdminCollections'
+import AdminCollections from './admin/pages/AdminResources'
 import AdminCareers from './admin/pages/AdminCareers'
 import AdminSettings from './admin/pages/AdminSettings'
 import Pnf from './pages/Pnf'
+import EmployeeDashboard from './staff/pages/EmployeeDashboard'
+import EmployeeProducts from './staff/pages/EmployeeProducts'
+import SalesData from './admin/pages/SalesData'
+
 function App() {
 
 const [loading,setLoading]=useState(true)
@@ -39,11 +43,17 @@ useEffect(()=>{
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/wishlist' element={<Wishlist/>}/>
         <Route path='/cart' element={<Cart/>}/>
-        <Route path='/*' element={<Pnf/>}/>
+
+ <Route path='/employee-dashboard' element={loading?<Preloader/>:<EmployeeDashboard/>}/>
+ <Route path='/employees/products' element={<EmployeeProducts/>}/>
+
+
         <Route path='/admin-dashboard' element={loading?<Preloader/>:<AdminDashboard/>}/>
         <Route path='/admin-collections' element={<AdminCollections/>} />
         <Route path='/admin-settings' element={<AdminSettings/>} /> 
         <Route path='/admin-careers' element={<AdminCareers/>} />
+        <Route path='/admin-sales' element={<SalesData/>} />
+        <Route path='/*' element={<Pnf/>}/>
       </Routes>
     </>
   )

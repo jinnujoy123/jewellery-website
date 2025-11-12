@@ -33,3 +33,10 @@ p{
   border:1px solid #4e093b;
   scale: 106%;
 }
+
+.invoice-container {
+  width: 800px;
+  background: white;
+  color: #111;
+  font-family: "Helvetica", Arial, sans-serif;
+}

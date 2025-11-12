@@ -1,29 +1,65 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../../components/Footer'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import {  viewProductsAPI } from '../../services/allAPI'
+import { toast, ToastContainer } from 'react-toastify'
+import SERVERURL from '../../services/serverURL'
 
 function ViewProduct() {
   const [open,setOpen]=useState(false)
+const [product,setProduct]=useState({})
+  const {id} = useParams()
+
+  useEffect(()=>{
+      viewProductDetails()
+  },[])
+
+
+  
+
+const viewProductDetails = async ()=>{
+  const token = sessionStorage.getItem("token")
+  if(token){
+    const reqHeader={
+      "Authorization":`Bearer ${token}`
+    }
+    try{
+        const result=await viewProductsAPI(id,reqHeader)
+        if(result.status==200){
+          setProduct(result.data)
+          // console.log(result.data);
+          
+        }else if(result.response.status==401){
+          toast.warning(result.response.data)
+        }
+    }catch(err){
+      console.log(err);
+      
+    }
+  }
+}
+// console.log(product);
   return (
     <div>
       <Header/>
    <div className=""style={{paddingTop:'100px'}} >
      <div className="md:pt-10">
      
-  <h1 className='pt-5'>Dakshitha Haaram Set</h1>
-<div className="md:grid grid-cols-2 py-10">
+  <h1 className='pt-5'>{product.title}</h1>
+<div className="md:grid grid-cols-2  pb-10">
   <div className=" flex justify-center items-center" >
-  <img src="/public/IMG_4656.webp" alt="image" style={{height:'500px'}} />
+  <img src={`${SERVERURL}/uploads/${product.image}`}
+                      alt={product.title} style={{height:'500px'}} />
   </div>
 <div className="px-10 md:px-0 md:pe-10">
 
-  <h3 className='text-blue-900 py-4'>Rs. 1899 /-</h3>
+  <h3 className='text-blue-900 py-4'>Rs. {product.discountPrice} /-</h3>
   <p className='text-sm text-gray-500 pb-5'>Tax included. Shipping calculated at checkout.</p>
-  <p>Description : <span className='text-gray-600'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A commodi maxime doloremque aperiam alias deserunt quas error cum nemo tenetur itaque in amet odio, voluptatum ex expedita dignissimos optio voluptates?</span></p>
+  <p>Description : <span className='text-gray-600'>{product.description}</span></p>
   <div className="flex justify-around w-full py-10">
     <button className='rounded shadow p-2 bg-stone-200 text-pink-900 hover:bg-stone-300'>Add to wishlist</button>
     <button className='rounded shadow p-2 bg-stone-200 text-pink-900 hover:bg-stone-300'>Add to Cart</button>
@@ -85,6 +121,19 @@ function ViewProduct() {
           </div>
    }
    <Footer/>
+    <ToastContainer
+position="top-right"
+autoClose={3000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+
+/>
     </div>
   )
 }
